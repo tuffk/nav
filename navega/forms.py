@@ -9,3 +9,9 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['email', 'password']
+
+class EmbarcacionForm(forms.ModelForm):
+
+    class Meta:
+        model = Embarcacion
+        fields = ['nombre', 'eslora', 'calado', 'carga']
