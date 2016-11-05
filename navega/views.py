@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate
 from django.shortcuts import render
 from .models import Embarcacion
 from .forms import UserForm
@@ -14,8 +15,8 @@ class UserLoginView(View):
         form = self.form_class(data={'email': self.request.POST['email'],
                                      'password': self.request.POST['password']})
 
-    email = self.request.POST['email']
-    password = self.request.POST['password']
+        email = self.request.POST['email']
+        password = self.request.POST['password']
 
-    # aquí se hace el query en la base de datos para autentificar al usuario
-    user = authenticate(username=email, password=password)
+        # aquí se hace el query en la base de datos para autentificar al usuario
+        user = authenticate(username=email, password=password)
