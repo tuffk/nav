@@ -14,7 +14,7 @@
     </div>
 
         <div class="col-xs-12 col-md-4 offset-md-4">
-            <form method="post" action="" class="m-t-2">
+            <form method="post" action="{% url 'navega:login' %}" class="m-t-2">
                 {% csrf_token %}
 
                 {% for field in form %}
