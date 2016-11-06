@@ -2,9 +2,21 @@
 {% block title %} Puerto {% endblock %}
 
 {% block content %}
+
+
+    {% if not user.is_authenticated %}
     <a href="{% url 'navega:login' %}">Login </a>
-    <a href="{% url 'navega:ceo' %}">CEO </a>
-    <a href="{% url 'navega:cfo' %}">CFO </a>
-    <a href="{% url 'navega:gman' %}">General Manager </a>
-    <a href="{% url 'navega:norm' %}">empleado normal</a>
+    {% endif %}
+    {% if user.username == 'legardo' %}
+        <a href="{% url 'navega:ceo' %}">CEO </a>
+    {% endif %}
+    {% if user.username == 'cfo' %}
+        <a href="{% url 'navega:cfo' %}">CFO </a>
+    {% endif %}
+    {% if user.username == 'gman' %}
+        <a href="{% url 'navega:gman' %}">General Manager </a>
+    {% endif %}
+    {% if not user.is_superuser %}
+        <a href="{% url 'navega:norm' %}">empleado normal</a>
+    {% endif %}
 {% endblock %}
