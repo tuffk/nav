@@ -2,5 +2,9 @@
 {% block title %} Puerto {% endblock %}
 
 {% block content %}
-
+    <a href="{% url 'navega:login' %}">Login </a>
+    <a href="{% url 'navega:ceo' %}">CEO </a>
+    <a href="{% url 'navega:cfo' %}">CFO </a>
+    <a href="{% url 'navega:gman' %}">General Manager </a>
+    <a href="{% url 'navega:norm' %}">empleado normal</a>
 {% endblock %}
