@@ -19,7 +19,7 @@ from .views import index
 
 
 urlpatterns = [
-    url(r'^navega/', include('navega.urls', namespace='shop')),
+    url(r'^navega/', include('navega.urls', namespace='navega')),
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name='home'),
 ]
