@@ -21,7 +21,8 @@ def cfo(request):
     return render(request, 'navega/cfo.html', {"ships":ships})
 
 def gman(request):
-    return render(request, 'navega/gman.html', {})
+    ships = Embarcacion.objects.all()
+    return render(request, 'navega/gman.html', {"ships":ships})
 
 def logoutMethod(request):
     if not request.user.is_authenticated():
@@ -50,8 +51,9 @@ def insertarEmbarcacion(request):
         form = EmbarcacionForm(request.POST or None)
         if form.is_valid():
             instance = form.save(commit=False)
+            instance.usuario = request.user
             instance.save()
-            return redirect('/navega/guardado')
+            return redirect('/navega/success')
         else:
             return render(request, 'navega/embarcacion.html', {'form': form})
 

@@ -4,11 +4,25 @@
 
 {% block content %}
 
-    <h2>{{ title }}</h2>
-    <p>{{ message }}</p>
-
-    {% if link %}
-        <a href="{{ link }}">{{ link_direction }}</a>
-    {% endif %}
+    <br>
+    <table class="table table-bordered table-hover table-inverse">
+        <thead class="thead-inverse">
+        <tr>
+            <th>Nombre</th>
+            <th>Costo</th>
+            <th>compa&ntilde;ia </th>
+            <th>Usuario que lo agrego</th>
+        </tr>
+        </thead>
+        {% for ship in ships %}
+            <tr>
+                <td>{{ ship.nombre }}</td>
+                <td>{{ ship.costo }}</td>
+                <td>{{ ship.company }}</td>
+            <td>{{ ship.usuario }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="/"> back to home</a>
 
 {% endblock %}
