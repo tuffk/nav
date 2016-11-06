@@ -15,7 +15,10 @@ def ceo(request):
     return render(request, 'navega/ceo.html', {"ships":ships})
 
 def cfo(request):
-    return render(request, 'navega/cfo.html', {})
+    st = datetime.date(2006, 1, 1)
+    en = datetime.date(2016, 12, 31)
+    ships = Embarcacion.objects.filter(fecha__range=(st, en))
+    return render(request, 'navega/cfo.html', {"ships":ships})
 
 def gman(request):
     return render(request, 'navega/gman.html', {})

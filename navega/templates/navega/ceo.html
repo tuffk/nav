@@ -4,20 +4,19 @@
 
 {% block content %}
 
-    <h2>{{ title }}</h2>
-    <p>{{ message }}</p>
+
     <br>
     <table class="table table-bordered table-hover">
-    <thead>
-    <tr>
-        <th>Nombre</th>
-        <th>Tipo de Embarcacion</th>
-        <th>Carga</th>
-        <th>Costo</th>
-        <th>Fecha de registro</th>
-        <th>usuario que la registro</th>
-    </tr>
-    </thead>
+        <thead class="thead-inverse">
+        <tr>
+            <th>Nombre</th>
+            <th>Tipo de Embarcacion</th>
+            <th>Carga</th>
+            <th>Costo</th>
+            <th>Fecha de registro</th>
+            <th>usuario que la registro</th>
+        </tr>
+        </thead>
         {% for ship in ships %}
             <tr>
                 <td>{{ ship.nombre }}</td>
@@ -29,8 +28,6 @@
             </tr>
         {% endfor %}
     </table>
-    {% if link %}
-        <a href="{{ link }}">{{ link_direction }}</a>
-    {% endif %}
+    <a href="/"> back to home</a>
 
 {% endblock %}
