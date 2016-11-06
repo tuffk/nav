@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, logout
+from django.contrib.auth import authenticate, logout, login
 from django.http import Http404
 from django.shortcuts import render, redirect
 from .models import Embarcacion
@@ -70,6 +70,7 @@ class UserLoginView(View):
         if user is not None:
 
             if user.is_active:
+                login(request, user)
                 return redirect('/')
 
 
