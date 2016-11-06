@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth import authenticate, logout, login
 from django.http import Http404
 from django.shortcuts import render, redirect
@@ -7,13 +9,16 @@ from .forms import UserForm, EmbarcacionForm
 from django.views.generic import View
 
 def ceo(request):
-    render(request, 'navega/ceo.html', {})
+    st = datetime.date(2016,1,1)
+    en = datetime.date(2016,12,31)
+    ships = Embarcacion.objects.filter(fecha__range=(st, en))
+    return render(request, 'navega/ceo.html', {"ships":ships})
 
 def cfo(request):
-    render(request, 'navega/cfo.html', {})
+    return render(request, 'navega/cfo.html', {})
 
 def gman(request):
-    render(request, 'navega/gman.html', {})
+    return render(request, 'navega/gman.html', {})
 
 def logoutMethod(request):
     if not request.user.is_authenticated():

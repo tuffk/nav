@@ -10,4 +10,5 @@ class Embarcacion(models.Model):
     carga = models.IntegerField()
     costo = models.DecimalField(max_digits=10, decimal_places=2)
     fecha = models.DateField(auto_now=False, auto_now_add=True)
+    company = models.CharField(max_length=100)
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL)

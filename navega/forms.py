@@ -19,7 +19,8 @@ class EmbarcacionForm(forms.ModelForm):
     tipo = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=TIPO, label='Tipo')
     carga = forms.CharField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
     costo = forms.CharField(widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    company = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Embarcacion
-        fields = ['nombre', 'eslora', 'calado', 'tipo', 'carga', 'costo']
+        fields = ['nombre', 'eslora', 'calado', 'tipo', 'carga', 'costo','company']
