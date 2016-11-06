@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}Subir Material{% endblock %}
+
+{% block content %}
+
+    <h2>Subir material</h2>
+
+    <div class="row">
+
+        <form method="post" action="" class="m-t-1">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <div class="form-group">
+                    <label>{{ field.label_tag }}</label>
+                    {% if field.errors %}
+                        {{ field.errors }}
+                    {% endif %}
+                    {{ field }}
+                </div>
+            {% endfor %}
+
+            <div class="col-lg-2 col-md-3 col-xs-4 pull-xs-right">
+                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+            </div>
+        </form>
+
+        <div class="col-lg-3 col-md-5 col-xs-6 pull-xs-right">
+            <form action="{% url 'shop:category' category_name=category_name %}">
+                <button type="submit" class="btn btn-danger btn-lg">
+                    Cancelar
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+{% endblock %}

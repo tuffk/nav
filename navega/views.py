@@ -1,12 +1,57 @@
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, logout
 from django.http import Http404
 from django.shortcuts import render, redirect
 from .models import Embarcacion
-from .forms import UserForm
+from .forms import UserForm, EmbarcacionForm
 
 from django.views.generic import View
 
-# Create your views here.
+def ceo(request):
+    render(request, 'navega/ceo.html', {})
+
+def cfo(request):
+    render(request, 'navega/cfo.html', {})
+
+def gman(request):
+    render(request, 'navega/gman.html', {})
+
+def logoutMethod(request):
+    if not request.user.is_authenticated():
+        raise Http404
+
+    logout(request)
+    return redirect('/')
+
+
+def success_create(request):
+
+    context = {
+        'title': 'Información guardada',
+        'message': 'Hemos guardado la información que nos has proporcionado'
+    }
+
+    return render(request, 'navega/letrero.html', context=context)
+
+
+def insertarEmbarcacion(request):
+
+    if not request.user.is_authenticated() or request.user.is_superuser:
+        raise Http404
+
+    if request.method == 'POST':
+        form = EmbarcacionForm(request.POST or None)
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.save()
+            return redirect('/navega/guardado')
+        else:
+            return render(request, 'navega/embarcacion.html', {'form': form})
+
+    form = EmbarcacionForm(None)
+
+    return render(request, 'navega/embarcacion.html', {'form': form})
+
+
 class UserLoginView(View):
 
     template = 'navega/login.html'

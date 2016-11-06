@@ -12,6 +12,14 @@ class UserForm(forms.ModelForm):
 
 class EmbarcacionForm(forms.ModelForm):
 
+    TIPO = (('Pasajero', 'Pasajero'), ('Carga', 'Carga'))
+    nombre = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    eslora = forms.CharField(widget=forms.IntegerField(attrs={'class': 'form-control'}))
+    calado = forms.CharField(widget=forms.IntegerField(attrs={'class': 'form-control'}))
+    tipo = forms.ChoiceField(widget=forms.Select(attrs={'class': 'form-control'}), choices=TIPO, label='Tipo')
+    carga = forms.CharField(widget=forms.IntegerField(attrs={'class': 'form-control'}))
+    costo = forms.CharField(widget=forms.IntegerField(attrs={'class': 'form-control'}))
+
     class Meta:
         model = Embarcacion
-        fields = ['nombre', 'eslora', 'calado', 'carga']
+        fields = ['nombre', 'eslora', 'calado', 'tipo', 'carga', 'costo']
